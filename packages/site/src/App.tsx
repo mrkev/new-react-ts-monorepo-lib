@@ -1,17 +1,14 @@
 import { useState } from "react";
 import GitHubButton from "react-github-btn";
-import { add } from "..";
+import { add } from "../../NEW_LIB/src";
 import "./App.css";
 
-const FOLDER_STRUCTURE = `dist/            built library, gitignored
-docs/            built website, configure GH Pages to point here
-src/
-  lib/           
-  site/          site goes here. Ignored when generating .d.ts files
-  public/        vite "public" folder for the site
-  index.html     site entry file
-  index.ts       library entry file
-`;
+const FOLDER_STRUCTURE = `
+docs/             built website, configure GH Pages to point here
+packages/
+  NEW_LIB/        source for the library
+  site/           source code for the site
+`.trim();
 
 export function App() {
   const [count, setCount] = useState(0);
@@ -23,30 +20,30 @@ export function App() {
         <br />
         Vite + React + TypeScript
         <br />
-        Library Template
+        Monorepo Library Template
       </h1>
 
       <p>
-        <a href="https://github.com/mrkev/new-react-ts-lib">
-          github.com/mrkev/new-react-ts-lib
+        <a href="https://github.com/mrkev/new-react-ts-monorepo-lib">
+          github.com/mrkev/new-react-ts-monorepo-lib
         </a>
       </p>
 
       <GitHubButton
-        href="https://github.com/mrkev/new-react-ts-lib"
+        href="https://github.com/mrkev/new-react-ts-monorepo-lib"
         data-color-scheme="no-preference: light; light: light; dark: dark;"
         data-icon="octicon-star"
         data-size="large"
-        aria-label="Star mrkev/new-react-ts-lib on GitHub"
+        aria-label="Star mrkev/new-react-ts-monorepo-lib on GitHub"
       >
         Star
       </GitHubButton>
       <GitHubButton
-        href="https://github.com/mrkev/new-react-ts-lib/generate"
+        href="https://github.com/mrkev/new-react-ts-monorepo-lib/generate"
         data-color-scheme="no-preference: light; light: light; dark: dark;"
         data-icon="octicon-repo-template"
         data-size="large"
-        aria-label="Use this template mrkev/new-react-ts-lib on GitHub"
+        aria-label="Use this template mrkev/new-react-ts-monorepo-lib on GitHub"
       >
         Use this template
       </GitHubButton>
@@ -75,20 +72,17 @@ export function App() {
             <code>dev</code> starts the dev server
           </li>
         </ul>
-        <li>Edit away!</li>
-        <details>
-          <summary>Folder structure</summary>
-          <pre
-            style={{
-              textAlign: "left",
-              background: "black",
-              color: "white",
-              padding: "2px 3px 1px 3px",
-            }}
-          >
-            {FOLDER_STRUCTURE}
-          </pre>
-        </details>
+        <li>Edit away! Folder structure:</li>
+        <pre
+          style={{
+            textAlign: "left",
+            background: "black",
+            color: "white",
+            padding: "2px 3px 1px 3px",
+          }}
+        >
+          {FOLDER_STRUCTURE}
+        </pre>
       </ol>
       <hr></hr>
 

@@ -1,4 +1,4 @@
-# Template for a library with React + TypeScript + Vite
+# Template for a library in a monorepo with React + TypeScript + Vite
 
 - `build:site` build the website to `docs`, so it can be served on Github Pages
 - `build:lib` build the library to `dist`, where `package.json` is configured to expect it

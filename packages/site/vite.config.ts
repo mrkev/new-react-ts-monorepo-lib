@@ -5,10 +5,13 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  root: "src",
   build: {
-    outDir: "../docs",
-    // minify: false,
+    outDir: "../../docs",
+    rollupOptions: {
+      input: {
+        site: "./index.html",
+      },
+    },
   },
   // instead of having absolute paths pointing at assets in `index.html`, use
   // relative paths. Works better with github pages where /assets/foobar.js

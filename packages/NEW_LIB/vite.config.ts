@@ -1,4 +1,3 @@
-import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -6,12 +5,10 @@ import dts from "vite-plugin-dts";
 // https://vitejs.dev/config/
 export default defineConfig({
   logLevel: "info",
-  plugins: [
-    react(),
-    dts({
-      exclude: ["src/site/**"],
-    }),
-  ],
+  plugins: [dts()],
+  server: {
+    port: 5174,
+  },
   build: {
     outDir: "dist",
     minify: false,
@@ -29,7 +26,7 @@ export default defineConfig({
         // Provide global variables to use in the UMD build for externalized deps
         globals: {
           react: "React",
-          "reactd-dom": "ReactDOM",
+          "react-dom": "ReactDOM",
         },
       },
     },
