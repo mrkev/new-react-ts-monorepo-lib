@@ -1,70 +1,48 @@
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import { FlatCompat } from "@eslint/eslintrc";
+import { fixupPluginRules } from "@eslint/compat";
 import { default as eslint } from "@eslint/js";
-import tsParser from "@typescript-eslint/parser";
+import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import tseslint from "typescript-eslint";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslint.configs.recommended,
-  allConfig: eslint.configs.all,
-});
 
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ["dist", "docs", "eslint.config.mjs"],
+    ignores: ["dist", "docs"],
   },
-  ...fixupConfigRules(
-    compat.extends("plugin:react/recommended", "plugin:react/jsx-runtime")
-  ),
   {
-    plugins: {
-      "react-hooks": fixupPluginRules(reactHooks),
-    },
+    plugins: { "react-hooks": fixupPluginRules(reactHooks) },
     rules: reactHooks.configs.recommended.rules,
   },
   {
     plugins: {
+      react,
       "react-refresh": reactRefresh,
     },
 
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.node,
       },
 
-      parser: tsParser,
       ecmaVersion: "latest",
       sourceType: "module",
-
-      parserOptions: {
-        project: ["./tsconfig.json", "./tsconfig.node.json"],
-        tsconfigRootDir: __dirname,
-      },
     },
 
     settings: {
-      react: {
-        version: "detect",
-      },
+      react: { version: "detect" },
     },
 
     rules: {
+      ...react.configs.recommended.rules,
+      ...react.configs["jsx-runtime"].rules,
       "react/no-unescaped-entities": "off",
       "react-refresh/only-export-components": [
         "warn",
-        {
-          allowConstantExport: true,
-        },
+        { allowConstantExport: true },
       ],
     },
   }
