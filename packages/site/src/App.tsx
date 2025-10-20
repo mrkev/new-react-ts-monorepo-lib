@@ -1,7 +1,6 @@
 import { useState } from "react";
 import GitHubButton from "react-github-btn";
 import { add } from "../../NEW_LIB/src";
-import "./App.css";
 
 const FOLDER_STRUCTURE = `
 docs/             built website, configure GH Pages to point here
@@ -14,8 +13,8 @@ export function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <h1>
+    <main className="space-y-6">
+      <h1 className="text-4xl font-bold m-0 mb-2">
         Simple
         <br />
         Vite + React + TypeScript
@@ -29,35 +28,37 @@ export function App() {
         </a>
       </p>
 
-      <GitHubButton
-        href="https://github.com/mrkev/new-react-ts-monorepo-lib"
-        data-color-scheme="no-preference: light; light: light; dark: dark;"
-        data-icon="octicon-star"
-        data-size="large"
-        aria-label="Star mrkev/new-react-ts-monorepo-lib on GitHub"
-      >
-        Star
-      </GitHubButton>
-      <GitHubButton
-        href="https://github.com/mrkev/new-react-ts-monorepo-lib/generate"
-        data-color-scheme="no-preference: light; light: light; dark: dark;"
-        data-icon="octicon-repo-template"
-        data-size="large"
-        aria-label="Use this template mrkev/new-react-ts-monorepo-lib on GitHub"
-      >
-        Use this template
-      </GitHubButton>
+      <span className="flex flex-row gap-2 justify-center">
+        <GitHubButton
+          href="https://github.com/mrkev/new-react-ts-monorepo-lib"
+          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-icon="octicon-star"
+          data-size="large"
+          aria-label="Star mrkev/new-react-ts-monorepo-lib on GitHub"
+        >
+          Star
+        </GitHubButton>
+        <GitHubButton
+          href="https://github.com/mrkev/new-react-ts-monorepo-lib/generate"
+          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-icon="octicon-repo-template"
+          data-size="large"
+          aria-label="Use this template mrkev/new-react-ts-monorepo-lib on GitHub"
+        >
+          Use this template
+        </GitHubButton>
+      </span>
 
       {/* Instructions */}
-      <h2 className="left">Getting Started</h2>
-      <ol style={{ textAlign: "left" }}>
+      <h2 className="text-left text-2xl font-semibold mb-2">Getting Started</h2>
+      <ol className="text-left ps-5 mt-2 space-y-1 list-decimal list-inside">
         <li>
-          Click <code>"Use Template"</code> above
+          Click <code>"Use this template"</code> above
         </li>
         <li>Clone the repo you created</li>
         <li>Use these scripts:</li>
         {/* Scripts */}
-        <ul style={{ textAlign: "left" }}>
+        <ul className="text-left ps-5 space-y-1 list-disc list-inside">
           <li>
             <code>build</code> builds this website and the library ready for
             publishing
@@ -73,20 +74,13 @@ export function App() {
           </li>
         </ul>
         <li>Edit away! Folder structure:</li>
-        <pre
-          style={{
-            textAlign: "left",
-            background: "black",
-            color: "white",
-            padding: "2px 3px 1px 3px",
-          }}
-        >
+        <pre className="text-left bg-black text-white py-2 px-4">
           {FOLDER_STRUCTURE}
         </pre>
       </ol>
-      <hr></hr>
+      <hr />
 
-      <p className="left">
+      <p className="text-left">
         This sample library just adds two numbers.
         <br />
         The latest version is always built with the site:
@@ -94,19 +88,10 @@ export function App() {
       <button onClick={() => setCount((count) => add(count, 1))}>
         add one: {count}
       </button>
-      <p></p>
 
-      <hr></hr>
+      <hr />
 
-      <p
-        className="read-the-docs"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "5px",
-          justifyContent: "center",
-        }}
-      >
+      <p className="flex flex-row gap-2 justify-center">
         <a href="https://aykev.dev/">Kevin Chavez</a> ·
         <a href="https://twitter.com/aykev">@aykev</a> ·
         <GitHubButton
@@ -119,6 +104,6 @@ export function App() {
           Follow @mrkev
         </GitHubButton>
       </p>
-    </>
+    </main>
   );
 }
