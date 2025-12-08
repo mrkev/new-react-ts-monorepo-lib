@@ -1,4 +1,4 @@
-import { default as eslint } from "@eslint/js";
+import js from "@eslint/js";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
@@ -7,17 +7,20 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  reactHooks.configs.flat.recommended,
-
   {
     ignores: ["**/dist", "docs"],
   },
 
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  react.configs.flat.recommended,
+  reactHooks.configs.flat.recommended,
+
   {
+    files: ["**/*.{ts,tsx,js,jsx}"],
     plugins: {
       react,
+      "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
 
@@ -29,6 +32,10 @@ export default defineConfig([
 
       ecmaVersion: "latest",
       sourceType: "module",
+      parserOptions: {
+        // Auto-discovers tsconfig.*.json files
+        projectService: true,
+      },
     },
 
     settings: {
@@ -39,6 +46,7 @@ export default defineConfig([
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       "react/no-unescaped-entities": "off",
+      "react/no-children-prop": "off",
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
