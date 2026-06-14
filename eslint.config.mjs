@@ -13,8 +13,6 @@ export default defineConfig([
 
   js.configs.recommended,
   tseslint.configs.recommended,
-  react.configs.flat.recommended,
-  reactHooks.configs.flat.recommended,
 
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
@@ -33,7 +31,6 @@ export default defineConfig([
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: {
-        // Auto-discovers tsconfig.*.json files
         projectService: true,
       },
     },
@@ -45,6 +42,7 @@ export default defineConfig([
     rules: {
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
+      ...reactHooks.configs.recommended.rules,
       "react/no-unescaped-entities": "off",
       "react/no-children-prop": "off",
       "react-refresh/only-export-components": [
