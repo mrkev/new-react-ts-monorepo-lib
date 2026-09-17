@@ -4,3 +4,7 @@ packages:
 onlyBuiltDependencies:
   - esbuild
   - nx
+peerDependencyRules:
+  allowedVersions:
+    # eslint-plugin-react doesn't declare eslint 10 as a peer yet, but works with it
+    'eslint-plugin-react>eslint': '10'

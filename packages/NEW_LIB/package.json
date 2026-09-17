@@ -22,8 +22,9 @@
     "test": "echo 'no tests atm'"
   },
   "devDependencies": {
-    "vite": "^7.1.11",
-    "vite-plugin-dts": "^4.5.4"
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "vite": "^8.3.0",
+    "vite-plugin-dts": "^5.1.0"
   },
   "NEW_LIB TODO": "FILL THESE FIELDS BELOW",
   "homepage": "",
